@@ -1,0 +1,28 @@
+{
+    "name": "DGUT辅助",
+    "manifest_version": 3, 
+    "version": "2.1.4", 
+    "description": "半自动U学院,半自动疫情打卡,更多功能与合作qq3518767065", 
+    "action": {
+      "default_title": "登录校园网and疫情打卡and网络认证",
+      "default_popup": "web_code/popup.html"
+    },
+    "icons": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "permissions": [
+      "activeTab"
+    ],
+    "content_scripts": [
+      {
+        "matches": [
+          "<all_urls>"
+        ],
+        "js": ["web_code/scr_winc.js"]
+      }
+    ],
+    "author": "QQ:3518767065"
+  }

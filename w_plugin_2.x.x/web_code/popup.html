@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>title</title>
+        <style>
+            #bg
+            {
+                width: 600px;
+                height: 500px;
+                background: url(icond.png);
+            }
+            .selc
+            {
+                font-size: 26px;
+            }
+            #ptitle
+            {
+                font-size: 30px;
+                color: cyan;
+                text-align: center;
+                background-color: rgba(47, 79, 75, 0.6);
+            }
+            #ctitle
+            {
+                font-size: 30px;
+                color: cyan;
+                text-align: center;
+                background-color: rgba(47, 79, 75, 0.6);
+            }
+            .sitem
+            {
+                margin: 2px;
+                border: solid 2px pink;
+                background-color: rgba(47, 79, 75, 0.6);
+                transition: 1s;
+            }
+            .sitem:hover
+            {
+                border: solid 3px aqua;
+            }
+            .sitem_title
+            {
+                display: inline;
+                font-size: 30px;
+                color: orangered;
+            }
+            .butt
+            {
+                margin: 6px;
+                display: inline-block;
+                width: auto;
+                font-size: 30px;
+                margin: 3px;
+                color: chartreuse;
+                border: solid 2px aqua;
+                border-radius: 10px;
+                padding: 4px;
+                transition: 1s;
+            }
+            .butt:hover
+            {
+                border: solid 3px pink;
+            }
+        </style>
+	</head>
+	<body>
+        <div id="bg">
+            <div id="ptitle">hello world!</div>
+            <div class="sitem">
+                <div class="divbox">
+                    <div class="sitem_title">视频序数</div>
+                    <select class="selc" id="vdidselc">
+                    <option value="0">1</option>
+                    <option value="1">2</option>
+                    <option value="2">3</option>
+                    <option value="3">4</option>
+                    <option value="4">5</option>
+                    <option value="5">6</option>
+                    <option value="6">7</option>
+                    <option value="7">8</option>
+                    <option value="8">9</option>
+                    <option value="9">10</option>
+                    </select>
+                </div>
+                <div class="divbox">
+                    <div class="sitem_title">视频倍速</div>
+                    <select class="selc" id="vpbrselc">
+                    <option value=".5">.5</option>
+                    <option value="1">1</option>
+                    <option value="1.5">1.5</option>
+                    <option value="2">2</option>
+                    <option value="4">3</option>
+                    <option value="4">4</option>
+                    <option value="10">10</option>
+                    <option value="16">16</option>
+                    </select>
+                </div>
+                <div class="butt" id="change_vpbr">变速！</div>
+                <div class="butt" id="ul_auto">U学院视频类课件16倍全自动</div>
+            </div>
+            <div class="sitem">
+                <div class="sitem_title">前往校园网认证</div>
+                <div class="butt" id="wlrz">go!</div>
+            </div>
+            <div class="sitem">
+                <div class="sitem_title">前往源码页面查看更新(你目前的版本:<kbd style="font-size: 30px; color: cyan;">2.1.4</kbd>)</div>
+                <div class="butt" id="ymym">go!</div>
+            </div>
+            <div class="sitem">
+                <div class="sitem_title">疫情打卡</div>
+                <div class="butt" id="yqdk_jump">go!</div>
+                <div class="butt" id="yqdk_auto">自动打卡</div>
+            </div>
+            <div id="ctitle">qq3518767065</div>
+        </div>
+	</body>
+    <script src="popup.js"></script>
+</html>
