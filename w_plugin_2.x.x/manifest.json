@@ -1,7 +1,7 @@
 {
     "name": "DGUT辅助",
     "manifest_version": 3, 
-    "version": "2.2.2", 
+    "version": "2.2.3", 
     "description": "半自动U学院,半自动疫情打卡,更多功能与合作qq3518767065", 
     "action": {
       "default_title": "登录校园网and疫情打卡and网络认证",
