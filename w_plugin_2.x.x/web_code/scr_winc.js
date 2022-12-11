@@ -66,7 +66,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
     else if(request.cmdt=='yqdk auto finish')
     {
         sendResponse("已开始,错误请报告qq3518767065");
-        yqdk_func();
+        yqdk_func(request.addr1,request.addr2,request.rnumbstr);
         
     }
     else if(request.cmdt=='source code page')
@@ -127,33 +127,50 @@ function vcheck()
     }
 }
 
-function yqdk_func()
+function 输入体温(体温)
+{
+    //体温
+    var ile = document.getElementsByClassName("van-field__control")[1]
+    var evt = new InputEvent('input', {
+        inputType: 'insertText',
+        dataTransfer: null,
+        isComposing: false
+    });
+    ile.value = 体温;
+    ile.dispatchEvent(evt); 
+}
+function 输入房号(房号)
+{
+    //房间号
+    var ile2 = document.getElementsByClassName("van-field__control")[4]
+    var evt2 = new InputEvent('input', {
+        inputType: 'insertText',
+        dataTransfer: null,
+        isComposing: false
+    });
+    ile2.value = 房号;
+    ile2.dispatchEvent(evt2); 
+}
+
+function yqdk_func(addr1,addr2,rnumb)
 {
     document.getElementsByClassName("select van-cell van-cell--clickable van-field")[0].click();//点击身体状况
     setTimeout(() => {
         document.getElementsByClassName("van-picker__confirm")[0].click();//确认身体状况
 
-        //体温
-        var ile = document.getElementsByClassName("van-field__control")[1]
-        var evt = new InputEvent('input', {
-            inputType: 'insertText',
-            dataTransfer: null,
-            isComposing: false
-        });
-        ile.value = '36.6';
-        ile.dispatchEvent(evt);
-
         setTimeout(() => {
+            输入体温('36.6');
             document.getElementsByClassName("select van-cell van-cell--clickable van-field")[1].click();//点击是否在校
             setTimeout(() => {
                 document.getElementsByClassName("van-picker__confirm")[1].click();//确认是否在校
                 setTimeout(() => {
                     document.getElementsByClassName("select van-cell van-cell--clickable van-field")[2].click();//选择校内住址
                     setTimeout(() => {
-                        document.getElementsByClassName("van-cascader__option")[0].click()//选择学生公寓
+                        document.getElementsByClassName("van-cascader__option")[addr1].click()//选择学生公寓
                         setTimeout(() => {
-                            document.getElementsByClassName("van-cascader__option")[6].click()//选择莞华12-15栋
+                            document.getElementsByClassName("van-cascader__option")[4+addr2].click()//选择莞华12-15栋
                             setTimeout(() => {
+                                输入房号(rnumb);
                                 document.getElementsByClassName("van-button van-button--info van-button--normal van-button--round")[0].click()//提交
                                 setTimeout(() => {
                                     if(document.getElementsByClassName("van-button van-button--info van-button--normal van-button--round")[0].innerText=="提交")
