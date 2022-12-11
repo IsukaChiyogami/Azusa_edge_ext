@@ -17,6 +17,64 @@ function sendMessageToContentScript(message)
 		});
 	});
 }
+var school_addr=[
+	{addr1: '学生公寓',addr2:["莞馨社区（1-6栋）","莞逸社区（7-11栋）","莞华社区（12-15栋）","莞雅社区（16-19栋）","莞博社区（20-24栋）"]},
+	{addr1: '教师公寓',addr2:["单身公寓","教师公寓","小公寓"]},
+	{addr1: "后勤附属楼及员工宿舍",addr2:["后勤楼14-16栋","后勤楼小楼29栋","第一食堂员工宿舍","第二食堂员工宿舍","第三食堂员工宿舍"]},
+	{addr1: "其他区域",addr2:["田径场","教学楼","现代教育楼","电子楼","计算机楼","文科楼","学术交流中心"]}
+]
+var school_addr1=0;
+var school_addr2=0;
+//addrs init
+var addrstr=window.localStorage.getItem("Azusa_ext:addr");
+if(addrstr)
+{
+	adens=addrstr.split(' ');
+	school_addr1=Number(adens[0]);
+	school_addr2=Number(adens[1]);
+	document.getElementById("school_addr_1").children[school_addr1].selected=true;
+	addr1_change(school_addr1);
+	document.getElementById("school_addr_2").children[school_addr2].selected=true;
+}
+
+function addr1_change()
+{
+	var selc_value = document.getElementById("school_addr_1").value;
+	school_addr1=selc_value;
+	var inh="";
+	var addr2s=school_addr[selc_value].addr2;
+	for(num=0;num<addr2s.length;num++)
+	{
+		inh+=' <option value="'+num+'">'+addr2s[num]+'</option>';
+	}
+	document.getElementById("school_addr_2").innerHTML=inh;
+}
+document.getElementById("school_addr_1").onchange=addr1_change;
+
+function addr2_change()
+{
+	var selc_value = document.getElementById("school_addr_2").value;
+	if(selc_value>-1)
+	{
+		school_addr2=selc_value;
+		window.localStorage.setItem("Azusa_ext:addr",String(school_addr1)+" "+String(school_addr2));
+	}
+}
+document.getElementById("school_addr_2").onchange=addr2_change;
+
+var rnumb=window.localStorage.getItem("Azusa_ext:roomnumb");
+if(rnumb)
+{
+	document.getElementById("roomnum").value=rnumb;
+}
+else
+{
+	rnumb="";
+}
+document.getElementById("roomnum").onchange=()=>{
+	rnumb=document.getElementById("roomnum").value;
+	window.localStorage.setItem("Azusa_ext:roomnumb",rnumb);
+}
 
 var selc_video=0;//视频序号
 var selc_playbackrate=1;//倍速
@@ -37,7 +95,15 @@ document.getElementById("yqdk_jump").onclick=()=>{
 	//sendMessageToContentScript({cmdt:'jump to dgut yqdk'});
 };
 document.getElementById("yqdk_auto").onclick=()=>{
-	sendMessageToContentScript({cmdt:'yqdk auto finish'});
+	if(school_addr1>-1 && school_addr2>-1 && rnumb.length)
+	{   
+		sendMessageToContentScript({cmdt:'yqdk auto finish',addr1:school_addr1,addr2:school_addr2,rnumbstr:rnumb});
+	}
+	else
+	{
+		document.getElementById("ptitle").innerText='未提供打卡参数(校内住址等)';
+	}
+	
 };
 document.getElementById("ymym").onclick=()=>{
 	chrome.tabs.create({url:"https://github.com/IsukaChiyogami/Azusa_edge_ext/"});
