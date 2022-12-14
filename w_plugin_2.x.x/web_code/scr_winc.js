@@ -58,17 +58,6 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
         sendResponse("完成,如果更换网址此方法将会失灵,可qq作者催更");
         location.href="http://172.31.252.91";
     }
-    else if(request.cmdt=='jump to dgut yqdk')
-    {
-        sendResponse("完成,如果更换网址此方法将会失灵,可qq作者催更");
-        location.href="https://yqfk-daka.dgut.edu.cn/";
-    }
-    else if(request.cmdt=='yqdk auto finish')
-    {
-        sendResponse("已开始,错误请报告qq3518767065");
-        yqdk_func(request.addr1,request.addr2,request.rnumbstr);
-        
-    }
     else if(request.cmdt=='source code page')
     {
         sendResponse("完成");
